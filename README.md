@@ -1,4 +1,4 @@
-# tf-service-tester-chat
+# YALO
 
 A small, throwaway, multi-service chat app whose real purpose is to practice
 hosting a multi-service website on TrueFoundry end to end. The app is a vehicle —

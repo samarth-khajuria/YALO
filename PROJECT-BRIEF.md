@@ -1,4 +1,4 @@
-# tf-service-tester-chat — Project Brief
+# YALO — Project Brief
 
 A complete build brief. An agent (or developer) with no prior context should be able to build, run, and deploy the whole project from this single document. It defines the intent, the final goal, the architecture, every component's spec, the connections, the Dockerfiles, and the three delivery phases (build, GitHub, TrueFoundry hosting).
 
@@ -49,7 +49,7 @@ This mirrors the shape of a larger system (a control plane fronting internal ser
 ## 4. Project structure
 
 ```
-tf-service-tester-chat/
+YALO/
   PROJECT-BRIEF.md            (this file)
   README.md                   (how to run locally; write during build)
   .gitignore                  (__pycache__, .env, .venv)
@@ -183,7 +183,7 @@ Done when: `cp .env.example .env`, set `LLM_API_KEY`, `docker compose up --build
 
 ## 9. Phase 2: push to GitHub
 
-Add a `README.md` (what it is, local run, the deploy summary) and a complete `.env.example`. Ensure `.env` is gitignored. `git init`, commit, create a GitHub repo named `tf-service-tester-chat`, push. (The person running this does the auth-bearing git and GitHub steps.)
+Add a `README.md` (what it is, local run, the deploy summary) and a complete `.env.example`. Ensure `.env` is gitignored. `git init`, commit, create a GitHub repo named `YALO`, push. (The person running this does the auth-bearing git and GitHub steps.)
 
 ---
 
@@ -204,7 +204,7 @@ Add a `README.md` (what it is, local run, the deploy summary) and a complete `.e
 - Personas answer via a real LLM using an API key (OpenAI-compatible client, provider and model set by env; a graceful fallback line covers errors/missing key).
 - The UI is its own separate service (nginx static + runtime config), not served by the control-plane.
 - Fixed login is `tester@wns.com` / `halotest`.
-- Project name is `tf-service-tester-chat`.
+- Project name is `YALO`.
 - Internals stay minimal; this is a learning scaffold, not a full or production replication.
 
 ---
