@@ -9,6 +9,11 @@ venv/
 # Environment (never commit real secrets)
 .env
 
+# Local no-Docker run artifacts
+.localrun/
+*.db
+ui/html/config.js
+
 # OS / editor
 .DS_Store
 Thumbs.db

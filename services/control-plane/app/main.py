@@ -38,20 +38,35 @@ TOKEN_TTL_SECONDS = 3600  # ~1 hour
 RECENT_MAX = 50           # capped recent list per session+persona
 RECENT_TTL = 3600         # ~1 hour
 
-CREATE_TABLE_SQL = sa.text(
-    """
-    CREATE TABLE IF NOT EXISTS messages (
-        id BIGSERIAL PRIMARY KEY,
-        session_id TEXT NOT NULL,
-        persona TEXT NOT NULL,
-        role TEXT NOT NULL,
-        content TEXT NOT NULL,
-        created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-    );
-    """
-)
+# Dialect-specific DDL. Postgres is the deployment target; SQLite is supported
+# so the app can run locally with no external database (no Docker required).
+_CREATE_TABLE_DDL = {
+    "postgresql": """
+        CREATE TABLE IF NOT EXISTS messages (
+            id BIGSERIAL PRIMARY KEY,
+            session_id TEXT NOT NULL,
+            persona TEXT NOT NULL,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        )
+    """,
+    "sqlite": """
+        CREATE TABLE IF NOT EXISTS messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT NOT NULL,
+            persona TEXT NOT NULL,
+            role TEXT NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        )
+    """,
+}
 
-engine = sa.create_engine(DATABASE_URL, pool_pre_ping=True, future=True)
+# SQLite (local no-Docker run) needs check_same_thread disabled because FastAPI
+# runs sync endpoints across a thread pool.
+_connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+engine = sa.create_engine(DATABASE_URL, pool_pre_ping=True, future=True, connect_args=_connect_args)
 
 app = FastAPI(title="control-plane")
 app.add_middleware(
@@ -77,8 +92,9 @@ def get_redis():
 def on_startup():
     # Create the messages table idempotently so this works against managed or
     # in-cluster databases that never run an init script.
+    ddl = _CREATE_TABLE_DDL.get(engine.dialect.name, _CREATE_TABLE_DDL["postgresql"])
     with engine.begin() as conn:
-        conn.execute(CREATE_TABLE_SQL)
+        conn.execute(sa.text(ddl))
 
 
 # ----------------------------- models -------------------------------------
