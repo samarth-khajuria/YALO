@@ -7,43 +7,43 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <span class="brand">tf-service-tester-chat</span>
-    <nav>
-      <a href="index.html">Home</a>
+  <header class="nav">
+    <a href="index.html" class="brand">tf-service-tester-chat</a>
+    <nav class="nav-links">
+      <button type="button" class="persona-tab active" data-persona="cowboy" hidden>Cowboy</button>
+      <button type="button" class="persona-tab" data-persona="osho" hidden>Osho</button>
       <a href="about.html">About</a>
-      <button id="logout" class="link-btn" hidden>Log out</button>
+      <button type="button" id="logout" class="logout-btn" hidden>Log out</button>
     </nav>
   </header>
 
-  <main class="wrap">
+  <main>
     <!-- Login view -->
-    <section id="login-view" class="card" hidden>
+    <section id="login-view" class="login" hidden>
       <h1>Sign in</h1>
-      <p class="muted">Only the fixed test user may log in.</p>
+      <p class="sub">Only the fixed test user may log in.</p>
       <form id="login-form">
         <label>Email
           <input id="email" type="email" value="tester@wns.com" autocomplete="username" />
         </label>
         <label>Password
-          <input id="password" type="password" placeholder="password" autocomplete="current-password" />
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
         </label>
         <button type="submit">Log in</button>
         <p id="login-error" class="error" hidden></p>
       </form>
     </section>
 
-    <!-- Chat view -->
-    <section id="chat-view" class="card" hidden>
-      <div class="persona-row">
-        <label class="radio"><input type="radio" name="persona" value="cowboy" checked /> Cowboy</label>
-        <label class="radio"><input type="radio" name="persona" value="osho" /> Osho</label>
-      </div>
+    <!-- Chat view (no box, full-height) -->
+    <section id="chat-view" class="chat" hidden>
+      <div class="chat-heading">Chatting with <strong id="persona-name">Cowboy</strong></div>
       <div id="messages" class="messages" aria-live="polite"></div>
-      <form id="chat-form" class="chat-form">
-        <input id="message" type="text" placeholder="Say something…" autocomplete="off" />
-        <button type="submit">Send</button>
-      </form>
+      <div class="composer">
+        <form id="chat-form">
+          <input id="message" type="text" placeholder="Say something…" autocomplete="off" />
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+      </div>
     </section>
   </main>
 

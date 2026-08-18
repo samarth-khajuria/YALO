@@ -7,16 +7,16 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <span class="brand">tf-service-tester-chat</span>
-    <nav>
-      <a href="index.html">Home</a>
+  <header class="nav">
+    <a href="index.html" class="brand">tf-service-tester-chat</a>
+    <nav class="nav-links">
+      <a href="index.html">Chat</a>
       <a href="about.html">About</a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <section class="card">
+  <main>
+    <article class="page">
       <h1>About</h1>
       <p>
         A small, multi-service chat app built to practice hosting a multi-service
@@ -37,11 +37,12 @@
         </li>
       </ul>
       <p class="muted">
-        Each persona answers via a real LLM when configured, and falls back to a
-        canned in-character line otherwise, so a reply always comes back.
+        Each persona answers via a real LLM (the TrueFoundry AI Gateway) when
+        configured, and falls back to a canned in-character line otherwise, so a
+        reply always comes back.
       </p>
       <p><a href="index.html">&larr; Back to chat</a></p>
-    </section>
+    </article>
   </main>
 </body>
 </html>
