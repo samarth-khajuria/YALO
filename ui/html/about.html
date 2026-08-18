@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — tf-service-tester-chat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">tf-service-tester-chat</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>About</h1>
+      <p>
+        A small, multi-service chat app built to practice hosting a multi-service
+        website end to end. A public <strong>control-plane</strong> handles login,
+        routes each message to an internal persona service, and persists the
+        conversation to Postgres (with a Redis cache). The app itself is just a
+        vehicle — the connections between the services are the point.
+      </p>
+      <h2>The two personas</h2>
+      <ul>
+        <li>
+          <strong>Cowboy</strong> — a warm, folksy voice from the old American West.
+          Calls you "partner" and leans on frontier and campfire metaphors.
+        </li>
+        <li>
+          <strong>Osho</strong> — a serene meditation teacher offering gentle
+          paradoxes about presence, awareness, silence, and letting go.
+        </li>
+      </ul>
+      <p class="muted">
+        Each persona answers via a real LLM when configured, and falls back to a
+        canned in-character line otherwise, so a reply always comes back.
+      </p>
+      <p><a href="index.html">&larr; Back to chat</a></p>
+    </section>
+  </main>
+</body>
+</html>

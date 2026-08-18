@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tf-service-tester-chat</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">tf-service-tester-chat</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <button id="logout" class="link-btn" hidden>Log out</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- Login view -->
+    <section id="login-view" class="card" hidden>
+      <h1>Sign in</h1>
+      <p class="muted">Only the fixed test user may log in.</p>
+      <form id="login-form">
+        <label>Email
+          <input id="email" type="email" value="tester@wns.com" autocomplete="username" />
+        </label>
+        <label>Password
+          <input id="password" type="password" placeholder="password" autocomplete="current-password" />
+        </label>
+        <button type="submit">Log in</button>
+        <p id="login-error" class="error" hidden></p>
+      </form>
+    </section>
+
+    <!-- Chat view -->
+    <section id="chat-view" class="card" hidden>
+      <div class="persona-row">
+        <label class="radio"><input type="radio" name="persona" value="cowboy" checked /> Cowboy</label>
+        <label class="radio"><input type="radio" name="persona" value="osho" /> Osho</label>
+      </div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="message" type="text" placeholder="Say something…" autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
