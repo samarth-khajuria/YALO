@@ -30,7 +30,7 @@ FALLBACK = "Well partner, my thinkin' rope's a mite tangled right now. Try me ag
 PORT = int(os.getenv("PORT", "8001"))
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "").rstrip("/")
-LLM_MODEL = os.getenv("LLM_MODEL", "openai-main/gpt-4o-mini")
+LLM_MODEL = os.getenv("LLM_MODEL", "openai-main/gpt-5.6-luna")
 
 app = FastAPI(title=f"{PERSONA}-service")
 
