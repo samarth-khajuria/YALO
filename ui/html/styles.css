@@ -204,6 +204,38 @@ button:disabled { background: var(--disabled); border-color: var(--disabled); cu
   color: var(--fg);
   border: 1px solid var(--line);
   border-bottom-left-radius: 4px;
+  white-space: normal;            /* assistant bubbles hold rendered markdown HTML */
+}
+
+/* rendered markdown inside assistant bubbles (monochrome) */
+.bubble.assistant > :first-child { margin-top: 0; }
+.bubble.assistant > :last-child { margin-bottom: 0; }
+.bubble p { margin: 0 0 0.5rem; }
+.bubble h3, .bubble h4, .bubble h5, .bubble h6 { margin: 0.5rem 0 0.3rem; font-size: 1rem; }
+.bubble ul, .bubble ol { margin: 0.3rem 0; padding-left: 1.25rem; }
+.bubble li { margin: 0.15rem 0; }
+.bubble a { color: inherit; text-decoration: underline; }
+.bubble code {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.88em;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.bubble pre {
+  background: #f0f0f0;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  overflow-x: auto;
+  margin: 0.4rem 0;
+}
+.bubble pre code { background: none; padding: 0; }
+.bubble blockquote {
+  margin: 0.4rem 0;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--line-strong);
+  color: var(--muted);
 }
 
 /* typing indicator */
