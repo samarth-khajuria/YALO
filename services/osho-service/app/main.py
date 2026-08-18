@@ -26,11 +26,11 @@ FALLBACK = "Breathe. The words are resting just now. Ask again, and let the sile
 #   LLM_BASE_URL  the gateway base URL (from the gateway's code snippet)
 #   LLM_API_KEY   a TrueFoundry Personal Access Token (sent as a Bearer token)
 #   LLM_MODEL     the gateway's "provider_account/model_name" form
-#                 (e.g. openai-main/gpt-4o-mini)
+#                 (e.g. openai/gpt-5.6-luna)
 PORT = int(os.getenv("PORT", "8002"))
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "").rstrip("/")
-LLM_MODEL = os.getenv("LLM_MODEL", "openai-main/gpt-5.6-luna")
+LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-5.6-luna")
 
 app = FastAPI(title=f"{PERSONA}-service")
 
