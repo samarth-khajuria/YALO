@@ -22,10 +22,15 @@ SYSTEM_PROMPT = (
 FALLBACK = "Well partner, my thinkin' rope's a mite tangled right now. Try me again in a spell."
 
 # --- config from environment ---
+# LLM_* target an OpenAI-compatible endpoint — here, the TrueFoundry AI Gateway:
+#   LLM_BASE_URL  the gateway base URL (from the gateway's code snippet)
+#   LLM_API_KEY   a TrueFoundry Personal Access Token (sent as a Bearer token)
+#   LLM_MODEL     the gateway's "provider_account/model_name" form
+#                 (e.g. openai-main/gpt-4o-mini)
 PORT = int(os.getenv("PORT", "8001"))
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
-LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.openai.com/v1").rstrip("/")
-LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o-mini")
+LLM_BASE_URL = os.getenv("LLM_BASE_URL", "").rstrip("/")
+LLM_MODEL = os.getenv("LLM_MODEL", "openai-main/gpt-4o-mini")
 
 app = FastAPI(title=f"{PERSONA}-service")
 
@@ -35,7 +40,7 @@ class ReplyIn(BaseModel):
 
 
 def llm(message: str) -> str:
-    """Provider-agnostic, OpenAI-compatible chat completion.
+    """OpenAI-compatible chat completion via the TrueFoundry AI Gateway.
 
     Returns the persona fallback line if no key is set or the call fails.
     """

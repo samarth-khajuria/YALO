@@ -23,8 +23,11 @@ See [`PROJECT-BRIEF.md`](PROJECT-BRIEF.md) for the full specification.
 caches recent ones in Redis → reply returned to the browser. The persona
 services are never exposed publicly; only the control-plane calls them.
 
-Each persona answers via a real LLM (OpenAI-compatible endpoint, set by env). If
-no key is configured or the call fails, it returns a graceful in-character
+Each persona answers via a real LLM through the **TrueFoundry AI Gateway**
+(an OpenAI-compatible endpoint), set by env: `LLM_BASE_URL` is the gateway base
+URL, `LLM_API_KEY` is a TrueFoundry Personal Access Token, and `LLM_MODEL` uses
+the gateway's `provider_account/model_name` form (e.g. `openai-main/gpt-4o-mini`).
+If no key is configured or the call fails, it returns a graceful in-character
 fallback line, so a reply always comes back.
 
 ## Run locally

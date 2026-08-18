@@ -32,18 +32,20 @@ services:
     build: ./services/cowboy-service
     environment:
       PORT: "8001"
+      # TrueFoundry AI Gateway (OpenAI-compatible); values come from .env.
       LLM_API_KEY: ${LLM_API_KEY:-}
-      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
-      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-openai-main/gpt-4o-mini}
     # Internal only: no ports published to the host.
 
   osho-service:
     build: ./services/osho-service
     environment:
       PORT: "8002"
+      # TrueFoundry AI Gateway (OpenAI-compatible); values come from .env.
       LLM_API_KEY: ${LLM_API_KEY:-}
-      LLM_BASE_URL: ${LLM_BASE_URL:-https://api.openai.com/v1}
-      LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-openai-main/gpt-4o-mini}
     # Internal only: no ports published to the host.
 
   control-plane:
